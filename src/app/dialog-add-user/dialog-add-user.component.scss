@@ -3,3 +3,14 @@
     flex-grow: 1;
     gap:16px;
 }
+
+.progressBar{
+    position: absolute;
+    left: 0;
+    right:0;
+    top:0;
+}
+
+.dialogContainer{
+    position: relative;
+}

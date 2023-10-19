@@ -1,7 +1,21 @@
+<mat-card>
+  <mat-card-content>
+    <table class="userTable">
+      <tr>
+        <th>Name</th>
+        <th>Street</th>
+        <th>City</th>
+      </tr>
+      <tr *ngFor="let use of userList,index as i">
+        <td>{{userList[i].firstName}}</td>
+        <td>{{userList[i].street}}</td>
+        <td>{{userList[i].city}}</td>
+      </tr>
+    </table>
 
-    <button  (click)="openDialog()" matTooltipPosition="above" matTooltip="Add User" 
-      class="addUserButton" mat-fab color="primary" aria-label="Example icon button with a delete icon">
-      <mat-icon>add</mat-icon>
-    </button>
-
-
+  </mat-card-content>
+</mat-card>
+<button (click)="openDialog()" matTooltipPosition="above" matTooltip="Add User" class="addUserButton" mat-fab
+  color="primary" aria-label="Example icon button with a delete icon">
+  <mat-icon>add</mat-icon>
+</button>

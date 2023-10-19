@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent {
-  
-
+export class UserComponent { 
+userList:any = [];
   constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
@@ -18,7 +18,8 @@ export class UserComponent {
     dialogRef.afterClosed().subscribe(result => {
       // console.log('The dialog was closed', result);
       // this.userOld = result;
-      // console.log('The Animal/s is/are', this.userOld);
+      this.userList.push(result);
+      console.log("all Users",this.userList);
     });
   }
 }
