@@ -1,14 +1,55 @@
-.addUserButton{
+.addUserButton {
     position: absolute;
-    right:30px;
+    right: 30px;
     bottom: 30px;
 }
 
-.userTable{
-    width:100%;
-    
-    th{
-        color:rgba(0,0,0,0.4);
+.mat-card{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.userTable {
+    width: 100%;
+    border-collapse: collapse;
+
+
+    tr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        padding-left: 0;
+        padding-right: 0;
+        cursor: pointer;
+        &:last-child{
+            border-bottom: 0;
+        } 
+        
+        &:first-child{
+            cursor:unset;
+            &:hover{
+                background-color:unset;
+            }
+        }      
+
+
+        td {
+            height: 60px;
+            &:first-child{
+                padding-left: 16; 
+            }
+        }
+        th{
+            &:first-child{
+                padding-left: 16; 
+            } 
+        }
+
+        &:hover{
+            background-color: rgba(0,0,0,0.04);
+        }
+    }      
+
+    th {
+        color: rgba(0, 0, 0, 0.4);
         text-align: start;
     }
 }

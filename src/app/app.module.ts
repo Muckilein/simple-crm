@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,7 @@ import {MatCardModule} from '@angular/material/card';
     MatDatepickerModule,
     MatNativeDateModule, 
     MatProgressBarModule,
-    MatCardModule,   
+    MatCardModule,  
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
    
