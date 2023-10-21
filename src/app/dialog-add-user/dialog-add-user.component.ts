@@ -22,44 +22,29 @@ export class DialogAddUserComponent {
   idUser: string;
   unsubSingleUser: any;
   loading = false;
-  onSnapp: any;
+  
 
-  firestore: Firestore = inject(Firestore);
- 
+  firestore: Firestore = inject(Firestore); 
  
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {
     
     console.log("print firestore", this.firestore);
     console.log("gameref", this.gameRef());
-    // this.onSnapp = this.subUserInfo();
+  
   }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  saveUser() {
-    this.loading = true;
-    this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
-    this.addUser();
-    setTimeout(() => {
-      this.loading = false; this.dialogRef.close();
-    }, 1000);
-
-
-  }
-
-
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-
 
   gameRef() {
     return collection(this.firestore, 'users');
   }
+ 
+  async saveUser() {
+    this.loading = true;
+    this.user.birthDate = this.birthDate.getTime();
+    console.log(this.user);
+    await this.addUser();
+    this.loading = false; this.dialogRef.close()
+   
+  } 
 
   makeJSONwithID(item: {}, id: string) {
     return { 'user': item, 'userID': id };
@@ -75,34 +60,17 @@ export class DialogAddUserComponent {
           }
         });
 
-    //  await this.updateGame(this.idUser);
+     await this.updateGame(this.idUser);
   }
-  subUserInfo() {
-    let ref = this.gameRef();
-    return onSnapshot(ref, (list) => {
-      list.forEach(elem => {
-        console.log('gameData anzeigen', elem);
-      });
-
-    });
-  }
-
-
-  // subSingleGameInfo() {
-  //   console.log('fire', this.firestore);
-  //   this.unsubSingleUser = onSnapshot(this.getSingleRef(this.idUser), (element) => {
-  //     //erst mal nix   
-  //   });
-  // }
-
 
   async updateGame(id: string) {
     let docRef = this.getSingleRef(id)
-    await updateDoc(docRef, this.user.toJSON()).catch(
+    await updateDoc(docRef, {"userId":id}).catch(
       (err) => { console.log(err); });
   }
   getSingleRef(docId: string) {
     return doc(this.firestore, 'users', docId);
-  }
+  }  
+  
 }
 

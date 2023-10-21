@@ -1,0 +1,31 @@
+<mat-card class="userHeader">
+    <mat-card-content>
+        <img src="assets/img/player.png">
+        <button mat-icon-button [matMenuTriggerFor]="menuUser" class="menuButton">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menuUser="matMenu">
+            <button mat-menu-item (click)="editUserDetail()">Edit</button>
+        </mat-menu>        
+    </mat-card-content>
+    <div style="text-align: center;">
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <p>{{user.email}}l</p>
+    </div>
+
+</mat-card>
+<mat-card class="mt32 designUserCard">
+    <mat-card-content>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="menuButton">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="editUserAddress()">Edit</button>
+        </mat-menu>
+        <mat-card-title>Address</mat-card-title>
+        Sraße: {{user.street}}<br>
+        ZIP: {{user.zipCoode}}<br>
+        Stadt: {{user.city}}<br>
+    </mat-card-content>
+
+</mat-card>

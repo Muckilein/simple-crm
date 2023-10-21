@@ -3,13 +3,13 @@
     <table class="userTable">
       <tr>
         <th>Name</th>
-        <th>Street</th>
+        <th>Email</th>
         <th>City</th>
       </tr>
-      <tr *ngFor="let use of userList,index as i">
-        <td>{{userList[i].firstName}}</td>
-        <td>{{userList[i].street}}</td>
-        <td>{{userList[i].city}}</td>
+      <tr *ngFor="let user of userListFire,index as i" [routerLink]="['/user/'+user.userId]">
+        <td>{{userListFire[i].firstName}} {{userListFire[i].lastName}}</td>
+        <td>{{userListFire[i].email}}</td>
+        <td>{{userListFire[i].city}}</td>
       </tr>
     </table>
 
