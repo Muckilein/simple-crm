@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Firestore, collection, doc, onSnapshot, addDoc, updateDoc } from '@angular/fire/firestore';
 import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
+import { DialogEditAddressComponent } from '../dialog-edit-address/dialog-edit-address.component';
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -16,7 +18,7 @@ export class UserDetailComponent {
 public user:User = new User();
   constructor(private route: ActivatedRoute,public dialog: MatDialog){
 
-    this.route.params.subscribe((params) => { this.userId = params['id'];});
+  this.route.params.subscribe((params) => { this.userId = params['id'];});
   this.subSingleGameInfo();
 }
 
@@ -28,21 +30,33 @@ subSingleGameInfo() {
     console.log('fire', this.firestore);
     this.unsubSingleUser = onSnapshot(this.getSingleRef(this.userId), (element) => {
       this.user = new User(element.data());
-    });
+    });    
   }
 
   editUserAddress(){
- // const dialogRef = this.dialog.open();
+//  const dialogRef = this.dialog.open(DialogEditAddressComponent);
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   // console.log('The dialog was closed', result);
-    //   // this.userOld = result;
-    //   // this.userList.push(result);
-    
-    // });
+ const dialogRef = this.dialog.open(DialogEditAddressComponent, {
+  data: {id: this.userId},
+});
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed', result);
+      // this.userOld = result;
+      // this.userList.push(result);    
+    });
   }
 
-  editUserDetail(){}
+  editUserDetail(){
+    const dialogRef = this.dialog.open(DialogEditUserComponent,{
+      data: {id: this.userId},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed', result);
+      // this.userOld = result;
+      // this.userList.push(result);    
+    });
+  }
 
   
 }
