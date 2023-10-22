@@ -19,21 +19,12 @@ export class DialogEditAddressComponent {
 
   constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     console.log("the id is", data.id);
-    this.userId = data.id;
-    this.subSingleGameInfo();
+    this.userId = data.id;    
   }
 
   getSingleRef(docId: string) {
     return doc(this.firestore, 'users', docId);
   }
-
-  subSingleGameInfo() {
-    console.log('fire', this.firestore);
-    this.unsubSingleUser = onSnapshot(this.getSingleRef(this.userId), (element) => {
-      this.user = new User(element.data());
-    });
-  }
-
   async saveUser() {
     this.loading = true;
     let docRef = this.getSingleRef(this.userId)

@@ -39,23 +39,20 @@ subSingleGameInfo() {
  const dialogRef = this.dialog.open(DialogEditAddressComponent, {
   data: {id: this.userId},
 });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed', result);
-      // this.userOld = result;
-      // this.userList.push(result);    
+    dialogRef.afterClosed().subscribe(result => {     
     });
+
+    dialogRef.componentInstance.user = new User(this.user.toJSON());
   }
 
   editUserDetail(){
     const dialogRef = this.dialog.open(DialogEditUserComponent,{
       data: {id: this.userId},
+     });
+    dialogRef.afterClosed().subscribe(result => {     
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed', result);
-      // this.userOld = result;
-      // this.userList.push(result);    
-    });
+  
+    dialogRef.componentInstance.user = new User(this.user.toJSON());
   }
 
   
