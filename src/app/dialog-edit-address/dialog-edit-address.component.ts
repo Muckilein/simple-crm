@@ -1,6 +1,6 @@
-import { Component, Inject, inject } from '@angular/core';
-import { Firestore, doc, onSnapshot, updateDoc } from '@angular/fire/firestore';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component,  inject } from '@angular/core';
+import { Firestore, doc,  updateDoc } from '@angular/fire/firestore';
+import { MatDialogRef, } from '@angular/material/dialog';
 
 import { User } from 'src/models/user.class';
 
@@ -10,16 +10,15 @@ import { User } from 'src/models/user.class';
   styleUrls: ['./dialog-edit-address.component.scss']
 })
 export class DialogEditAddressComponent {
-  public user: User = new User();
+  public user: User ;//= new User();
   public loading: boolean = false;
-  userId: string = "";
+  public userId: string ;
   firestore: Firestore = inject(Firestore);
   birthDate: Date;
   unsubSingleUser: any;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log("the id is", data.id);
-    this.userId = data.id;    
+  constructor(public dialogRef: MatDialogRef<DialogEditAddressComponent>) {
+   setTimeout(()=>{console.log("user id ",this.userId);},1000); 
   }
 
   getSingleRef(docId: string) {

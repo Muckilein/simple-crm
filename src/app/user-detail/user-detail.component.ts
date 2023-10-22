@@ -34,14 +34,15 @@ subSingleGameInfo() {
   }
 
   editUserAddress(){
-
- const dialogRef = this.dialog.open(DialogEditAddressComponent, {
-  data: {id: this.userId},
-});
+ const dialogRef = this.dialog.open(DialogEditAddressComponent
+  // , {  data: {id: this.userId},}
+);
     dialogRef.afterClosed().subscribe(result => {     
     });
 
     dialogRef.componentInstance.user = new User(this.user.toJSON());
+    dialogRef.componentInstance.userId = this.userId;
+    
   }
 
   editUserDetail(){
