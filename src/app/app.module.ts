@@ -14,7 +14,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -27,6 +27,10 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -39,7 +43,9 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     DialogAddUserComponent,
     UserDetailComponent,
     DialogEditAddressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -58,11 +64,14 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     MatNativeDateModule, 
     MatProgressBarModule,
     MatCardModule, 
-    MatMenuModule, 
+    MatMenuModule,     
+    AngularFireAuthModule,
+    FormsModule,
+    ReactiveFormsModule,     
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-   
-    
+    AngularFireModule.initializeApp(environment.firebase),
+      
   ],
   providers: [],
   bootstrap: [AppComponent]

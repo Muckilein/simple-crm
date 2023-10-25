@@ -1,0 +1,22 @@
+<div style="display:flex;justify-content: center;width:100%">
+  <div class="containerRegister" [formGroup]="registerForm">
+    <p>Register</p>
+    <div class="loginForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>e-mail</mat-label>
+        <input matInput formControlName="email" placeholder="e-mail">
+        <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+          Email is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' :'text'" placeholder="e-mail">
+        <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+          Password is required.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button [disabled]="registerForm.invalid" (click)="register()">Register</button>
+    </div>
+  </div>
+</div>
